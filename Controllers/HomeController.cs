@@ -6,7 +6,9 @@ namespace Mission6.Controllers
 {
     public class HomeController : Controller
     {
+        // db connection variable
         private readonly MovieDbContext _context;
+        // db connection constructor
         public HomeController(MovieDbContext context)
         {
             _context = context;
@@ -24,6 +26,7 @@ namespace Mission6.Controllers
         [HttpPost]
         public IActionResult AddMovie(Movie newMovie)
         {
+            // this is how to add a new movie to the database
             _context.Movies.Add(newMovie);
             _context.SaveChanges();
             return View("Confirmation");
