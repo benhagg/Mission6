@@ -10,7 +10,8 @@ namespace Mission6.Models
         {
         }
 
-        // DbSet property for accessing the Movies table in the database
+        // DbSet property for accessing the tables in the database (need to be names same as table)
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Movie>
+
+<h2>This is the Joel Hilton Movie Collection</h2>
+<br />
+<!-- Button to Add a New Movie (all my buttons use bootstrap classes)-->
+<a class="btn btn-primary mb-3" asp-controller="Home" asp-action="AddMovie">Add Movie</a>
+<!-- Movie Table -->
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Rating</th>
+            <th>Edited</th>
+            <th>Lent To</th>
+            <th>Copied to Plex</th>
+            <th>Notes</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@(movie.Category != null ? movie.Category.CategoryName : "")</td>
+                <td>@movie.Year</td>
+                <td>@(string.IsNullOrEmpty(movie.Director) ? "" : movie.Director)</td>
+                <td>@(string.IsNullOrEmpty(movie.Rating) ? "" : movie.Rating)</td>
+                <td>@(movie.Edited ? "Yes" : "No")</td>
+                <td>@(string.IsNullOrEmpty(movie.LentTo) ? "" : movie.LentTo)</td>
+                <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
+                <td>@(string.IsNullOrEmpty(movie.Notes) ? "" : movie.Notes)</td>
+                <td><a class="btn btn-outline-info" asp-action="EditMovie" asp-route-id="@movie.MovieId">Edit</a></td>
+                <td><a class="btn btn-outline-danger" asp-action="DeleteMovie" asp-route-id="@movie.MovieId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
